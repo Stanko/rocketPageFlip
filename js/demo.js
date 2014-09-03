@@ -1,0 +1,1 @@
+var pageflip = new RocketPageFlip('.pageflip');

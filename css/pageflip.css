@@ -1,0 +1,62 @@
+.pageflip {
+  position: relative;
+  -webkit-perspective: 800px;
+          perspective: 800px; }
+  .pageflip .page {
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 10; }
+    .pageflip .page.page-current {
+      display: block; }
+  .pageflip .half {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    top: 0;
+    z-index: 15; }
+    .pageflip .half.half-left {
+      left: 0; }
+    .pageflip .half.half-right {
+      left: 50%; }
+      .pageflip .half.half-right .page {
+        margin-left: -100%; }
+  .pageflip .half .page, .pageflip .side .page {
+    display: block !important;
+    width: 200%; }
+  .pageflip .flip-part {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    left: 50%;
+    z-index: 20;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+    -webkit-transition: -webkit-transform 1.2s;
+            transition: transform 1.2s;
+    -webkit-transform-origin: center left;
+        -ms-transform-origin: center left;
+            transform-origin: center left; }
+    .pageflip .flip-part .side {
+      display: block;
+      position: absolute;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+              backface-visibility: hidden;
+      -webkit-transform-style: preserve-3d;
+              transform-style: preserve-3d; }
+      .pageflip .flip-part .side.side-front .page {
+        margin-left: -100%; }
+      .pageflip .flip-part .side.side-back {
+        -webkit-transform: rotateY(-180deg);
+                transform: rotateY(-180deg); }
+    .pageflip .flip-part.flipped {
+      -webkit-transform: rotateY(-180deg);
+              transform: rotateY(-180deg); }

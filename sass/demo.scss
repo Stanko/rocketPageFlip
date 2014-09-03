@@ -1,0 +1,44 @@
+@import "reset";
+
+*{
+	box-sizing: border-box;
+}
+body{
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	font-weight: 200;
+	color: #333;
+	background: #f3f6f9;
+	margin: 40px;
+}
+h1, h2, h3 {
+	font-size: 32px;
+	font-weight: 200;
+	margin-bottom: 10px;
+}
+h2{ font-size: 24px; }
+h3{ font-size: 20px; }
+p{
+	margin-bottom: 15px;
+	line-height: 1.4em;
+}
+.big{
+	font-size: 18px;
+}
+hr{
+	border: none;
+	border-top: 1px solid #666;
+	margin: 15px 0 14px;
+}
+
+.pageflip{
+	height: 400px;
+	background: #abc;
+	position: relative;
+	max-width: 800px;
+	margin: 0 auto;
+
+	.page{
+		padding: 20px;
+	}
+}

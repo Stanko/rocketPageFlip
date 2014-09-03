@@ -1,0 +1,88 @@
+.pageflip {
+	position: relative;
+	perspective: 800px;
+
+	.page{
+		display: none;
+		height: 100%;
+		width: 100%;
+		position: relative;
+		z-index: 10;
+
+		&.page-current{
+			display: block;
+		}
+	}
+
+
+	.half{
+		position: absolute;
+		width: 50%;
+		height: 100%;
+		overflow: hidden;
+		top: 0;
+		z-index: 15;
+
+		&.half-left{
+			left: 0;
+		}
+		&.half-right{
+			left: 50%;
+			.page{
+				margin-left: -100%;
+			}
+		}
+	}
+
+	.half,
+	.side{
+		.page{
+			display: block !important;
+			width: 200%;
+		}
+	}
+
+
+	.flip-part {
+		position: absolute;
+		width: 50%;
+		height: 100%;
+		top: 0;
+		left: 50%;
+		z-index: 20;
+
+		backface-visibility: hidden;
+		transform-style: preserve-3d;
+		transition: transform 1.2s;
+		transform-origin: center left;
+
+
+		.side {
+			display: block;
+			position: absolute;
+			overflow: hidden;
+			width: 100%;
+			height: 100%;
+
+			backface-visibility: hidden;
+			transform-style: preserve-3d;
+
+			&.side-front {
+				.page{
+					margin-left: -100%;
+				}
+			}
+			&.side-back {
+				transform: rotateY( -180deg );
+			}
+		}
+
+		&.flipped {
+			transform: rotateY( -180deg );
+		}
+
+	}
+
+
+}
+
