@@ -98,3 +98,9 @@ pre, code {
   margin: 0 auto; }
   .pageflip .page {
     overflow: hidden; }
+
+body, html, .full {
+  height: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  max-width: 100%; }

@@ -138,6 +138,8 @@ RocketPageFlip.prototype.flip = function(page) {
 		flipPart,
 		flipPartFront,
 		flipPartBack,
+		halfOverlay,
+		pageOverlay,
 		self = this;
 
 	prevPage = this.options.current;
@@ -161,15 +163,18 @@ RocketPageFlip.prototype.flip = function(page) {
 
 	backwards = page < prevPage;
 
+	halfOverlay = $('<div>').addClass('dark-overlay');
+	pageOverlay = $('<div>').addClass('dark-overlay page-overlay darken');
+
 	if(backwards){
 		prev = this.el.pages.eq(this.options.current);
 	    next = this.el.pages.eq(prevPage);
-	    rightHalf = $('<div>').addClass('half half-right').append(next.clone());
+	    rightHalf = $('<div>').addClass('half half-right').append(next.clone(), halfOverlay);
 	}
 	else{
 		next = this.el.pages.eq(this.options.current);
 	    prev = this.el.pages.eq(prevPage);
-	    leftHalf = $('<div>').addClass('half half-left').append(prev.clone());
+	    leftHalf = $('<div>').addClass('half half-left').append(prev.clone(), halfOverlay);
 	}
 
 
@@ -182,13 +187,15 @@ RocketPageFlip.prototype.flip = function(page) {
 		flipPart.addClass('flipped');
 	}
 
-	this.el.main.append(leftHalf, rightHalf, flipPart);
+	this.el.main.append(leftHalf, rightHalf, flipPart, pageOverlay);
 
 	this.showCurrent();
 
 
 	setTimeout(function(){
 		flipPart.toggleClass('flipped');
+		halfOverlay.addClass('darken');
+		pageOverlay.removeClass('darken');
 	}, 50);
 
 	this.rotating = true;

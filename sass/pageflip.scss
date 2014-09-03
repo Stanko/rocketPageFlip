@@ -2,8 +2,6 @@
 	position: relative;
 	perspective: 2000px;
 
-	//.side, .flip-part{ display: none; }
-
 	.page{
 		display: none;
 		height: 100%;
@@ -36,6 +34,29 @@
 			.page{
 				margin-left: -100%;
 			}
+		}
+	}
+
+	.dark-overlay{
+		position: absolute;
+		z-index: 16;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		background-color: rgba(0,0,0,0.6);
+		transition: opacity 0.6s;
+		transition-delay: 0.3s;
+
+		&.darken{
+			opacity: 1;
+		}
+
+		&.page-overlay{
+			z-index: 14;
+			transition: opacity 0.9s;
+			transition-delay: 0;
 		}
 	}
 
