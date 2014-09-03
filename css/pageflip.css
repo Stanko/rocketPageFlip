@@ -1,7 +1,7 @@
 .pageflip {
   position: relative;
-  -webkit-perspective: 800px;
-          perspective: 800px; }
+  -webkit-perspective: 2000px;
+          perspective: 2000px; }
   .pageflip .page {
     display: none;
     height: 100%;
@@ -16,7 +16,11 @@
     height: 100%;
     overflow: hidden;
     top: 0;
-    z-index: 15; }
+    z-index: 15;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d; }
     .pageflip .half.half-left {
       left: 0; }
     .pageflip .half.half-right {
@@ -60,3 +64,71 @@
     .pageflip .flip-part.flipped {
       -webkit-transform: rotateY(-180deg);
               transform: rotateY(-180deg); }
+  .pageflip a.flip-directional {
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    margin-top: -15px;
+    top: 50%;
+    z-index: 30;
+    background: #fff;
+    color: #333;
+    padding: 0 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    opacity: 0.2;
+    -webkit-transition: opacity 0.25s;
+            transition: opacity 0.25s; }
+    .pageflip a.flip-directional:hover {
+      opacity: 0.8; }
+    .pageflip a.flip-directional.flip-next {
+      right: 10px; }
+    .pageflip a.flip-directional.flip-prev {
+      left: 10px; }
+  .pageflip a.flip-directional {
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    margin-top: -15px;
+    top: 50%;
+    background: #fff;
+    color: #333;
+    padding: 0 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    opacity: 0.2;
+    -webkit-transition: opacity 0.25s;
+            transition: opacity 0.25s;
+    z-index: 30; }
+    .pageflip a.flip-directional:hover {
+      opacity: 0.8; }
+    .pageflip a.flip-directional.flip-next {
+      right: 10px; }
+    .pageflip a.flip-directional.flip-prev {
+      left: 10px; }
+  .pageflip .flip-navigation {
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+    text-align: center;
+    line-height: 20px;
+    z-index: 30; }
+    .pageflip .flip-navigation a {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      vertical-align: middle;
+      text-align: center;
+      background: #fff;
+      color: #333;
+      opacity: 0.2;
+      -webkit-transition: all 0.25s;
+              transition: all 0.25s;
+      border-radius: 50%;
+      text-decoration: none;
+      margin: 0 2px; }
+      .pageflip .flip-navigation a:hover {
+        opacity: 0.8; }
+      .pageflip .flip-navigation a.active {
+        width: 20px;
+        height: 20px; }

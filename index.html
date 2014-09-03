@@ -4,36 +4,48 @@
 	<title>Rocket Page Flip</title>
 	<link rel="stylesheet" href="css/demo.css">
 	<link rel="stylesheet" href="css/pageflip.css">
+
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
 </head>
 <body>
 
+	<div class="container">
+		<h1>Rocket Page Flip</h1>
+		<p>
+			Download on <a href="https://github.com/Stanko/rocketPageFlip">GitHub</a>
+		</p>
+<pre>
+defaultOptions = {
+	current: 0, // page to display
+	navigation: true, // show pagination
+	directionalNav: true, // show navigation btns
+	prevText: 'prev', // text for prev button
+	nextText: 'next' // text for next button
+};
+</pre>
+	</div>
+
 	<div class="pageflip">
-		<div class="page" style="background-color:#bac">
-			<h1>1111111111111111111111111</h1>
+		<div class="page page-current" style="background: #209657 url('img/1.jpg') no-repeat center center">
 		</div>
-		<div class="page" style="background-color:#cab">
-			<h1>2222222222222222222222222</h1>
+		<div class="page" style="background: #0387A5 url('img/2.jpg') no-repeat center center">
 		</div>
-		<div class="page" style="background-color:#abc">
-			<h1>3333333333333333333333333</h1>
-		</div>
-		<div class="page" style="background-color:#cba">
-			<h1>4444444444444444444444444</h1>
-		</div>
-		<div class="page" style="background-color:#bca">
-			<h1>5555555555555555555555555</h1>
+		<div class="page" style="background: #A5C8CB url('img/3.jpg') no-repeat center center">
 		</div>
 	</div>
 
-	<div style="text-align: center; padding: 20px 0">
-	<a href="javascript:void(0)" class="next-page">Next</a>
+	<div class= "container">
+		Images by <a href="https://www.behance.net/sarmafin">Sarmafin</a>
 	</div>
 
 
 
 
-	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script src="js/pageflip.js"></script>
-	<script src="js/demo.js"></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="js/pageflip.js"></script>
+<script src="js/demo.js"></script>
+
 </body>
 </html>

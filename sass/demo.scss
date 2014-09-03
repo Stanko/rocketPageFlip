@@ -9,7 +9,7 @@ body{
 	font-weight: 200;
 	color: #333;
 	background: #f3f6f9;
-	margin: 40px;
+	margin: 40px 0;
 }
 h1, h2, h3 {
 	font-size: 32px;
@@ -25,20 +25,48 @@ p{
 .big{
 	font-size: 18px;
 }
+a{
+	color: #888;
+	&:hover{ color: #333; }
+}
 hr{
 	border: none;
 	border-top: 1px solid #666;
 	margin: 15px 0 14px;
 }
+.container{
+	position: relative;
+	max-width: 500px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+// Code
+pre, code{
+	font-family: "Deja-vu Sans Mono", Monaco, Menlo, Consolas, "Courier New", monospace;
+	font-size: 13px;
+	line-height: 17px;
+
+	background: #ddd;
+	border-radius: 3px;
+
+	padding: 15px;
+	white-space: pre-wrap;
+    word-break: break-all;
+    word-wrap: break-word;
+	display: inline-block;
+}
+
+
 
 .pageflip{
-	height: 400px;
+	height: 500px;
 	background: #abc;
 	position: relative;
-	max-width: 800px;
+	max-width: 500px;
 	margin: 0 auto;
 
 	.page{
-		padding: 20px;
+		overflow: hidden;
 	}
 }
