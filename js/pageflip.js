@@ -166,25 +166,27 @@ RocketPageFlip.prototype.flip = function(page) {
 	halfOverlay = $('<div>').addClass('dark-overlay');
 	pageOverlay = $('<div>').addClass('dark-overlay page-overlay darken');
 
-	if(backwards){
-		prev = this.el.pages.eq(this.options.current);
-	    next = this.el.pages.eq(prevPage);
-	    rightHalf = $('<div>').addClass('half half-right').append(next.clone(), halfOverlay);
-	}
-	else{
-		next = this.el.pages.eq(this.options.current);
-	    prev = this.el.pages.eq(prevPage);
-	    leftHalf = $('<div>').addClass('half half-left').append(prev.clone(), halfOverlay);
-	}
 
+	prev = this.el.pages.eq(this.options.current);
+	next = this.el.pages.eq(prevPage);
 
 	flipPartFront = $('<div>').addClass('side side-front').append(prev.clone());
-	flipPartBack = $('<div>').addClass('side side-back').append(next.clone());
+		flipPartBack = $('<div>').addClass('side side-back').append(next.clone());
+
+	if(backwards){
+		rightHalf = $('<div>').addClass('half half-right').append(next.clone(), halfOverlay);
+	}
+	else{
+		leftHalf = $('<div>').addClass('half half-left').append(next.clone(), halfOverlay);
+	}
 
 	flipPart = $('<div>').addClass('flip-part').append(flipPartFront, flipPartBack);
 
 	if(backwards){
 		flipPart.addClass('flipped');
+	}
+	else{
+		flipPart.addClass('flip-reverse');
 	}
 
 	this.el.main.append(leftHalf, rightHalf, flipPart, pageOverlay);
@@ -205,6 +207,9 @@ RocketPageFlip.prototype.flip = function(page) {
 		// so children doesn't trigger it
 		if (e.target === flipPart.get(0)) {
 			self.rotating = false;
+
+			halfOverlay.remove();
+			pageOverlay.remove();
 			if(leftHalf){
 				leftHalf.remove();
 			}

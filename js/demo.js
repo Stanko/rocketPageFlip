@@ -1,1 +1,1 @@
-var pageflip = new RocketPageFlip('.pageflip');
+var pageflip = new RocketPageFlip('.pageflip', { current: 0 });
