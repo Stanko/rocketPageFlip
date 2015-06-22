@@ -5,6 +5,38 @@
 	http://www.rocketlaunch.me
 */
 
+var ie10plus = false;
+
+function isValidIEVersion()
+{
+	var rv = -1;
+	if (navigator.appName == 'Microsoft Internet Explorer')
+	{
+		var ua = navigator.userAgent;
+		var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+		if (re.exec(ua) != null)
+			rv = parseFloat( RegExp.$1 );
+	}
+	else if (navigator.appName == 'Netscape')
+	{
+		var ua = navigator.userAgent;
+		var re  = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
+		if (re.exec(ua) != null)
+			rv = parseFloat( RegExp.$1 );
+	}
+
+	// Check version number (return true if greater than or equal to 10, otherwise false)
+	return (rv >= 10);
+
+	// If you need to return the version number use this
+	//return rv;
+}
+
+if(isValidIEVersion()){
+	ie10plus = true;
+	$('body').removeClass('not-ie');
+}
+
 var RocketPageFlip;
 
 RocketPageFlip = function(selector, options){
@@ -13,7 +45,8 @@ RocketPageFlip = function(selector, options){
 		navigation: true, // show pagination
 		directionalNav: true, // show prev/next navigation buttons
 		prevText: 'prev', // text for prev button
-		nextText: 'next' // text for next button
+		nextText: 'next', // text for next button
+		fade: true // show slides fade when flipping is not supported
 	};
 
 	this.rotating = false;
@@ -41,6 +74,7 @@ RocketPageFlip.prototype.init = function() {
 };
 
 RocketPageFlip.prototype.supports = function(prop) {
+	return true;
 	var div = document.createElement('div'),
 		vendors = 'Khtml Ms O Moz Webkit'.split(' '),
 		len = vendors.length;
@@ -116,10 +150,17 @@ RocketPageFlip.prototype.buildNavigation = function() {
 	}
 };
 
-RocketPageFlip.prototype.showCurrent = function() {
+RocketPageFlip.prototype.showCurrent = function(fade) {
 	var self = this;
+	fade = fade || false;
 
-	this.el.pages.hide().eq(this.options.current).show();
+	if(fade){
+		this.el.pages.hide().eq(this.options.current).fadeIn(300);
+	}
+	else{
+		this.el.pages.hide().eq(this.options.current).show();
+	}
+
 
 	if(this.options.navigation){
 		self.el.navigation.find('a')
@@ -157,7 +198,7 @@ RocketPageFlip.prototype.flip = function(page) {
 	this.options.current = page;
 
 	if(!this.isModernBrowser){
-		this.showCurrent();
+		this.showCurrent(this.options.fade);
 		return;
 	}
 
@@ -171,13 +212,17 @@ RocketPageFlip.prototype.flip = function(page) {
 	next = this.el.pages.eq(prevPage);
 
 	flipPartFront = $('<div>').addClass('side side-front').append(prev.clone());
-		flipPartBack = $('<div>').addClass('side side-back').append(next.clone());
+	flipPartBack = $('<div>').addClass('side side-back').append(next.clone());
 
 	if(backwards){
 		rightHalf = $('<div>').addClass('half half-right').append(next.clone(), halfOverlay);
 	}
 	else{
 		leftHalf = $('<div>').addClass('half half-left').append(next.clone(), halfOverlay);
+	}
+
+	if(ie10plus){
+		flipPartFront.hide();
 	}
 
 	flipPart = $('<div>').addClass('flip-part').append(flipPartFront, flipPartBack);
@@ -190,7 +235,6 @@ RocketPageFlip.prototype.flip = function(page) {
 	}
 
 	this.el.main.append(leftHalf, rightHalf, flipPart, pageOverlay);
-
 	this.showCurrent();
 
 
@@ -198,6 +242,13 @@ RocketPageFlip.prototype.flip = function(page) {
 		flipPart.toggleClass('flipped');
 		halfOverlay.addClass('darken');
 		pageOverlay.removeClass('darken');
+
+		if(ie10plus){
+			setTimeout(function(){
+				flipPartFront.show();
+				flipPartBack.hide();
+			}, 400);
+		}
 	}, 50);
 
 	this.rotating = true;
